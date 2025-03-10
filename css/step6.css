@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 1.25rem "Fira Sans", sans-serif;
+  color: #333;
+  display: grid;
+  justify-content: center;
+}
+
+main {
+  display: grid;
+  place-items: center;
+  max-width: 500px;
+  min-width: 90vw;
+  height: 80vh;
+  background: #fff;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+section { text-align: center; width: 100%; }
+h1 { font-size: 2.5rem; font-weight: bold; margin-bottom: 2rem; color: darkred; }
+section.intro p { margin-bottom: 2rem; }
+section.intro p.guess { font-size: 8rem; }
+h2.flag { font-size: 10rem; margin: 0; color: #666; }
+
+button {
+  display: block;
+  background: aliceblue;
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  padding: .5rem 1rem;
+  width: 50%;
+  max-width: 350px;
+  margin: .5rem auto 1rem auto;
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 3px lightblue;
+  position: relative;
+}
+button::before { content: ' '; background: url(../i/star.svg); height: 32px; width: 32px; position: absolute; bottom: -2rem; left: -1rem; opacity: 0; }
+button::after {  content: ' '; background: url(../i/star.svg); height: 32px; width: 32px; position: absolute; bottom: -2rem; right: -2rem; opacity: 0; }
+button:active { box-shadow: none; transform: translateY(3px); cursor: pointer;
+background: lightblue; background-position: 100px; }
+button:hover {
+  cursor: pointer; opacity: 0.9;
+  background: lightcyan;
+}
+button.replay { width: 100%; font-size: 1.5rem; color: #333; }
+button.wrong { background: crimson; border-color: darkred; color: #fff; box-shadow: 0 5px firebrick;  }
+button.correct { background: green; border-color: darkgreen; color: #fff; box-shadow: 0 5px darkgreen; }
+button.correct::before { animation: sparkle .5s ease-out forwards; }
+button.correct::after { animation: sparkle2 .75s ease-out forwards; }
+
+.score { position: absolute; top: 1rem; left: 50%; font-size: 2rem; color: #777; font-weight: bold; }
+.hide { display: none; }
+
+.slide-off { animation: 0.75s slide-off ease-out forwards; animation-delay: 1s;}
+.slide-on { animation: 0.75s slide-on ease-in; }
+.fade-in { opacity: 0; animation: 1s fade-in ease-out forwards; }
+
+@keyframes slide-off {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(10vw); }
+}
+@keyframes slide-on {
+  from { opacity: 0; transform: translateX(-10vw); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sparkle {
+  from { opacity: 0; bottom: -2rem; scale: 0.5 }
+  to { opacity: 0.5; bottom: 1rem; scale: 0.8; left: -2rem; transform: rotate(90deg); }
+}
+
+@keyframes sparkle2 {
+  from { opacity: 0; bottom: -2rem; scale: 0.2}
+  to { opacity: 0.7; bottom: -1rem; scale: 1; right: -3rem; transform: rotate(-45deg); }
+}
+
+
+/* ensure buttons look good on smaller screens */
+@media (max-width: 600px) {
+  button { width: 80%; }
+}
+
+/* targetting touch screens */
+@media (pointer: coarse) {
+  button:hover { background: lightblue; }
+}

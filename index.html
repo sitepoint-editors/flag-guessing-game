@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Tutorial</title>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22> 🏳️</text></svg>">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-funky.min.css" integrity="sha512-q59Usnbm/Dz3MeqoMEATHqIwozatJmXr/bFurDR7hpB5e2KxU+j2mp89Am9wq9jwZRaikpnKGHw4LP/Kr9soZQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" integrity="sha512-whYhDwtTmlC/NpZlCr6PSsAaLOrfjVg/iXAnC4H/dtiHawpShhT2SlIMbpIhT/IL/NrpdMm+Hq2C13+VKpHTYw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" integrity="sha512-jwrwRWZWW9J6bjmBOJxPcbRvEBSQeY4Ad0NEXSfP0vwYi/Yu9x5VhDBl3wz6Pnxs8Rx/t1P8r9/OHCRciHcT7Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" integrity="sha512-Ei5Vokmnc/f7vIt31aodVMuavT/xp2Lt5vGDYLgCzgBX/z5ghbZQfxt/9FkNs+RyG8IfBKAkdRsQQk4PZyHq5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-QaQkFkE1LvUW6IaC7zLY4EsrNHuMWwepQv2RWyg4q/3+KI7K2WwtNEe6IPuYE7ZWkNxdKEnLJRuyuSnvbTUB3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+>
+
+<style>
+    .container { max-width: 800px; }
+    section { margin-bottom: 3rem; border-bottom: 1px solid rgba(0,0,0,0.2); padding-bottom: 2rem; }
+    h1 { text-align: center; margin: 2rem 0 3rem 0; }
+    h2 { font-weight: normal; }
+    a { font-weight: bold; }
+    a:hover { color: crimson; }
+    code { font-size: 75%; }
+    footer { text-align: center; margin: 2rem 0; font-size: 90%; }
+    footer a { text-decoration: none; color: #777; }
+</style>
+
+</head>
+<body>
+
+<header class="container">
+<h1>
+The power of vanilla JS and CSS<br />
+<small>- a reminder -</small>
+</h1>
+
+<p>
+Developing for the web these days can seem overwhelming. There is an
+almost infinitely rich choice of libraries and frameworks to pick from.
+You'll probably also need to implement a build step, version control
+and a deploy pipeline. All before you've written a single line of code.
+</p>
+
+<p>
+How about a fun suggestion? Let's take a step back and remind ourselves
+just how succinct and powerful modern JavaScript and CSS can be, without
+the need for any shiny extras.
+</p>
+
+<p>
+Interested? Come with me then, on a journey to make a browser based game
+using only vanilla js and CSS.
+</p>
+
+</header>
+
+<main class="container">
+<section>
+<h2>The Idea</h2>
+
+<p>
+We'll be building a flag guessing game. The player is presented with a
+flag and a multiple choice style list of answers.
+</p>
+</section>
+
+<section>
+<h2>Step 1. Basic structure</h2>
+<p>
+First off, we're going to need a list of countries and their respective
+flags. Thankfully, we can harness the power of emojis for displaying the
+flags, meaning we don't have to source or, even worse, create them
+ourselves. I've prepared this in <a href="./js/data.json">JSON</a> form.
+</p>
+
+<p>
+At its simplest the interface is going to show a flag emoji and five buttons:
+<img src="./i/screenshot1.png" width="400px" style="margin: 1rem auto; display: block; border: 1px solid rgba(0,0,0,0.2); border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.5) 10px 10px 10px -10px" />
+</p>
+
+<p>
+A dash of CSS using grid to center everything and relative sizes so it
+displays nicely from the smallest screen up to the biggest monitor.
+</p>
+
+
+<p>
+Grab a copy of our starter shim (<a href="step1.html">step1.html</a>). We will be building on this through out
+the tutorial.
+</p>
+
+<p>
+The file structure for our project looks like this:
+</p>
+<pre><code class="language-javascript">
+  step1.html
+  step2.html // etc
+  js/
+    data.json
+    // more js files
+  helpers/
+    // we'll get to this in step 3.
+  css/
+  i/
+</code></pre>
+
+<p>
+At the end of each section there will be a link to the our
+code in it's current state.
+</p>
+
+</section>
+
+<section>
+<h2>Step 2. A Simple Prototype</h2>
+<p>Let's get cracking. First off, we need to grab our <a href="./js/data.json">data.json</a> file</p>
+
+<pre><code class="language-javascript">
+    async function loadCountries(file) {
+      try {
+        const response = await fetch(file);
+        return await response.json();
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+
+    // data.json contains an array of objects that looks like this:
+    // { flag: <Flag emoji>, name: <Country name>}
+    loadCountries('./js/data.json')
+    .then((data) => {
+        startGame(data.countries)
+    });
+</code></pre>
+
+<p>
+Now that we have the data, we can start the game. The following
+code is generously commented. Take a couple of minutes to read
+through and get a handle on what is happening.
+</p>
+
+<pre><code class="language-javascript">
+    function startGame(countries) {
+      // we want a randomized list of countries
+      // first, get all the keys from our JSON object
+      // now shuffle
+      shuffle(countries);
+
+      // pick answer
+      let answer = countries.shift();
+
+      // pick 4 more countries, merge our answer and shuffle
+      let selected = shuffle([answer, ...countries.slice(0, 4)]);
+
+      // update the DOM, starting with the flag
+      document.querySelector('h2.flag').innerText = answer.flag;
+      // update each button with a country name
+      document.querySelectorAll('.suggestions button')
+          .forEach((button, index) => {
+        const countryName = selected[index].name;
+        button.innerText = countryName;
+        // this will allow us to check if the clicked button
+        // corresponds to the answer
+        button.dataset.correct = (countryName === answer.name);
+        button.onclick = checkAnswer;
+      })
+    }
+</code></pre>
+
+<p>
+And some logic to check the answer:
+</p>
+
+<pre><code class="language-javascript">
+    function checkAnswer(e) {
+      const button = e.target;
+      if (button.dataset.correct === 'true') {
+        button.classList.add('correct');
+        alert('Correct! Well done!');
+      } else {
+        button.classList.add('wrong');
+        alert('Wrong answer try again');
+      }
+    }
+</code></pre>
+
+<p>
+You've probably noticed that our <code>startGame</code> function calls a shuffle function.
+Here is a simple implementation of the Fisher-Yates algorithm:
+</p>
+
+<pre><code class="language-javascript">
+    // Fisher-Yates shuffle
+    // https://bost.ocks.org/mike/shuffle/
+    function shuffle(array) {
+      var m = array.length, t, i;
+
+      // While there remain elements to shuffle…
+      while (m) {
+
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+      }
+
+      return array;
+
+    }
+</code></pre>
+
+</section>
+
+<section>
+<h2>Step 3. A bit of class</h2>
+<p>
+Time for a bit of housekeeping. Modern libraries and frameworks often force
+certain conventions that help apply structure to apps. As things start to
+grow this makes sense and having all code in one file soon gets messy. Let's
+leverage the power of modules to keep our code, errm, modular. Update your
+HTML file, replacing the inline script with this:
+</p>
+
+<script type="text/plain" class="language-markup">
+  <script type="module" src="./js/step3.js"></script>
+</script>
+
+<p>
+Now, in js/step3.js we can load our helpers:
+</p>
+
+<pre><code class="language-javascript">
+  import loadCountries from "./helpers/loadCountries.js";
+  import shuffle from "./helpers/shuffle.js";
+</code></pre>
+
+<p>
+Be sure to move the shuffle and loadCountries functions to their respective files.
+</p>
+
+<p>
+<b>Note:</b> Ideally we would also import our data.json as a module but, 
+unfortunately, Firefox does not support import assertions.
+</p>
+
+<p>
+You'll also need to start each function with export default. For example:
+</p>
+
+<pre><code class="language-javascript">
+  export default function shuffle(array) {
+  ...
+</code></pre>
+
+<p>
+We'll also encapsulate our game logic in a Game class. This helps maintain the integrity
+of the data and makes the code more secure and maintainable. Take a minute to read
+through the code comments
+</p>
+
+<pre><code class="language-javascript">
+loadCountries('js/data.json')
+  .then((data) => {
+    const countries = data.countries;
+    const game = new Game(countries);
+    game.start();
+  });
+
+class Game {
+  constructor(countries) {
+    // because we shift & slice the array we'll need to keep
+    // an intact copy
+    this.masterCountries = countries;
+    // easier access to elements
+    this.DOM = {
+      flag: document.querySelector('h2.flag'),
+      answerButtons: document.querySelectorAll('.suggestions button')
+    }
+
+    // trigger the checkAnswer method when clicked
+    this.DOM.answerButtons.forEach((button) => {
+      button.onclick = (e) => {
+        this.checkAnswer(e.target);
+      }
+    })
+
+  }
+
+  start() {
+
+    // note: using the spread operator allows us to make
+    // a copy of the array rather than a reference which
+    // would mean changes to countries affects masterCountries
+    // see 4.3 https://github.com/airbnb/javascript#arrays
+    this.countries = shuffle([...this.masterCountries]);
+    // get our answer & remove from the array so
+    // it doesn't repeat.
+    const answer = this.countries.shift();
+    // pick 4 more countries, merge our answer and shuffle
+    const selected = shuffle([answer, ...this.countries.slice(0, 4)]);
+
+
+    // update the DOM, starting with the flag
+    this.DOM.flag.innerText = answer.flag;
+    // update each button with a country name
+    selected.forEach((country, index) => {
+      const button = this.DOM.answerButtons[index];
+      // remove any classes from previous turn
+      button.classList.remove('correct', 'wrong');
+      button.innerText = country.name;
+      button.dataset.correct = country.name === answer.name;
+    });
+  }
+
+  checkAnswer(button) {
+    const correct = button.dataset.correct === 'true';
+
+    if (correct) {
+      button.classList.add('correct');
+      alert('Correct! Well done!');
+      this.start();
+    } else {
+      button.classList.add('wrong');
+      alert('Wrong answer try again');
+    }
+  }
+}
+</code></pre>
+
+</section>
+
+<section>
+<h2>Step 4. Scoring And A Gameover Screen</h2>
+
+<p>
+Let's update the Game constructor to handle multiple rounds:
+</p>
+<pre><code class="language-css">
+class Game {
+  constructor(countries, numTurns = 3) {
+    // number of turns in a game
+    this.numTurns = numTurns;
+    ...
+</code></pre>
+
+<p>
+Our DOM will need to be updated so we can handle the game over
+state, add a replay button and display the score.
+</p>
+
+<script type="text/plain" class="language-markup">
+    <main>
+      <div class="score">0</div>
+
+      <section class="play">
+      ...
+      </section>
+
+      <section class="gameover hide">
+       <h2>Game Over</h2>
+        <p>You scored:
+          <span class="result">
+          </span>
+        </p>
+        <button class="replay">Play again</button>
+      </section>
+    </main>
+</script>
+
+<p>We just hide the game over section until it is required.</p>
+
+<p>Now, add references to these new DOM elements in our game
+constructor:</p>
+
+<pre><code class="language-javascript">
+    this.DOM = {
+      score: document.querySelector('.score'),
+      play: document.querySelector('.play'),
+      gameover: document.querySelector('.gameover'),
+      result: document.querySelector('.result'),
+      flag: document.querySelector('h2.flag'),
+      answerButtons: document.querySelectorAll('.suggestions button'),
+      replayButtons: document.querySelectorAll('button.replay'),
+    }
+</code></pre>
+
+<p>We'll also tidy up our Game start method, moving the logic
+for displaying the countries to a separate method. This
+will help keep things clean and manageable</p>
+<pre><code class="language-css">
+
+  start() {
+    this.countries = shuffle([...this.masterCountries]);
+    this.score = 0;
+    this.turn = 0;
+    this.updateScore();
+    this.showCountries();
+  }
+
+  showCountries() {
+    // get our answer
+    const answer = this.countries.shift();
+    // pick 4 more countries, merge our answer and shuffle
+    const selected = shuffle([answer, ...this.countries.slice(0, 4)]);
+
+    // update the DOM, starting with the flag
+    this.DOM.flag.innerText = answer.flag;
+    // update each button with a country name
+    selected.forEach((country, index) => {
+      const button = this.DOM.answerButtons[index];
+      // remove any classes from previous turn
+      button.classList.remove('correct', 'wrong');
+      button.innerText = country.name;
+      button.dataset.correct = country.name === answer.name;
+    });
+
+  }
+
+  nextTurn() {
+    const wrongAnswers = document.querySelectorAll('button.wrong')
+          .length;
+    this.turn += 1;
+    if (wrongAnswers === 0) {
+      this.score += 1;
+      this.updateScore();
+    }
+
+    if (this.turn === this.numTurns) {
+      this.gameOver();
+    } else {
+      this.showCountries();
+    }
+  }
+
+  updateScore() {
+    this.DOM.score.innerText = this.score;
+  }
+
+  gameOver() {
+    this.DOM.play.classList.add('hide');
+    this.DOM.gameover.classList.remove('hide');
+    this.DOM.result.innerText = `${this.score} out of ${this.numTurns}`;
+  }
+</code></pre>
+
+<p>
+At the bottom of the Game constructor method we will
+listen for clicks to the replay button(s). In the
+event of a click we restart by calling the start method.
+</p>
+
+<pre><code class="language-javascript">
+    this.DOM.replayButtons.forEach((button) => {
+      button.onclick = (e) => {
+        this.start();
+      }
+    });
+</code></pre>
+
+<p>
+Lastly, let's add a dash of style to the buttons, position the score and
+add our .hide class to toggle game over as needed.
+</p>
+<pre><code class="language-css">
+button.correct { background: darkgreen; color: #fff; }
+button.wrong { background: darkred; color: #fff; }
+
+.score { position: absolute; top: 1rem; left: 50%; font-size: 2rem; }
+.hide { display: none; }
+</code></pre>
+
+<p>Progress! We now have a very simple game.
+It is a little bland, though. Let's address that
+in the next step.
+</p>
+
+<p><a href="step4.html">Code from this step</a></p>
+
+</section>
+
+<section>
+<h2>Step 5. Bring The Bling!</h2>
+<p>CSS animations are a very simple and succinct way to
+bring static elements and interfaces to life.</p>
+
+<p>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes">Keyframes</a>
+allow us to define keyframes of an animation sequence with changing
+CSS properties. Consider this for sliding our country list on and off screen:
+</p>
+
+<pre><code class="language-css">
+.slide-off { animation: 0.75s slide-off ease-out forwards; animation-delay: 1s;}
+.slide-on { animation: 0.75s slide-on ease-in; }
+
+@keyframes slide-off {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(50vw); }
+}
+@keyframes slide-on {
+  from { opacity: 0; transform: translateX(-50vw); }
+  to { opacity: 1; transform: translateX(0); }
+}
+</code></pre>
+
+<p>We can apply the sliding effect when starting the game...</p>
+<pre><code class="language-css">
+  start() {
+    // reset dom elements
+    this.DOM.gameover.classList.add('hide');
+    this.DOM.play.classList.remove('hide');
+    this.DOM.play.classList.add('slide-on');
+    ...
+  }
+</code></pre>
+
+<p>...and in the nextTurn method</p>
+<pre><code class="language-css">
+  nextTurn() {
+    ...
+    if (this.turn === this.numTurns) {
+      this.gameOver();
+    } else {
+      this.DOM.play.classList.remove('slide-on');
+      this.DOM.play.classList.add('slide-off');
+    }
+  }
+</code></pre>
+
+<p>
+We also need to call the nextTurn method once we've checked the
+answer. Update the checkAnswer method to achieve this:
+</p>
+<pre><code class="language-css">
+  checkAnswer(button) {
+    const correct = button.dataset.correct === 'true';
+
+    if (correct) {
+      button.classList.add('correct');
+      this.nextTurn();
+    } else {
+      button.classList.add('wrong');
+    }
+  }
+</code></pre>
+
+<p>
+Once the slide-off animation has finished we need to
+slide it back on and update the country list. We could
+set a timeout, based on animation length, and the perform
+this logic. Thankfully, there is an easier way using
+the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event">animationend</a>
+event:
+</p>
+<pre><code class="language-css">
+    // listen to animation end events
+    // in the case of .slide-on, we change the card,
+    // then move it back on screen
+    this.DOM.play.addEventListener('animationend', (e) => {
+      const targetClass = e.target.classList;
+      if (targetClass.contains('slide-off')) {
+        this.showCountries();
+        targetClass.remove('slide-off', 'no-delay');
+        targetClass.add('slide-on');
+      }
+    });
+</code></pre>
+
+<p><a href="step5.html">Code from this step</a></p>
+
+
+</section>
+
+<section>
+<h2>Step 6. Final Touches</h2>
+<p>Wouldn't it be nice to add a title screen. This way the user
+is given a bit of context and not thrown straight into the game</p>
+
+<p>Our markup will look like this:</p>
+<script type="text/plain" class="language-markup">
+      <!-- hide score until game.start() is called -->
+      <div class="score hide">0</div>
+
+      <section class="intro fade-in">
+       <h1>
+          Guess the flag
+      </h1>
+       <p class="guess">🌍</p>
+      <p>How many can you recognize?</p>
+      <button class="replay">Start</button>
+      </section>
+
+
+      <!-- hide play until game.start() is called -->
+      <section class="play hide">
+      ...
+</script>
+
+<p>
+Let's hook the intro screen into the game.<br />
+We'll need to add a reference to it in the DOM elements:
+</p>
+<pre><code class="language-javascript">
+    // in Game constructor
+    this.DOM = {
+      intro: document.querySelector('.intro'),
+      ....
+</code></pre>
+
+<p>
+Then simply hide it when starting the game:
+</p>
+<pre><code class="language-javascript">
+  start() {
+    // hide intro
+    this.DOM.intro.classList.add('hide');
+    // show score
+    this.DOM.score.classList.remove('hide');
+    ...
+</code></pre>
+
+<p>
+Also, don't forget to add the new styling:
+</p>
+<pre><code class="language-css">
+section.intro p { margin-bottom: 2rem; }
+section.intro p.guess { font-size: 8rem; }
+.fade-in { opacity: 0; animation: 1s fade-in ease-out forwards; }
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</code></pre>
+
+<p>
+Wouldn't it be nice to provide the player with a rating
+based on their score? This is super easy to implement.
+As can be seen, in the updated gameOver method:
+</p>
+
+<pre><code class="language-javascript">
+    const ratings = ['💩','🤣','😴','🤪','👎','😓','😅','😃','🤓','🔥','⭐'];
+    const percentage = (this.score / this.numTurns) * 100;
+    // calculate rating based on score
+    const rating = Math.ceil(percentage / ratings.length);
+
+    this.DOM.play.classList.add('hide');
+    this.DOM.gameover.classList.remove('hide');
+    // reuse our fade-in class from the intro
+    this.DOM.gameover.classList.add('fade-in');
+    this.DOM.result.innerHTML = `
+      ${this.score} out of ${this.numTurns}
+      <br />
+      Your rating: ${this.ratings[rating]}
+      `;
+  }
+</code></pre>
+
+<p>
+One final finishing touch; a nice animation when the player guesses
+correctly. We can turn once more to CSS animations to achieve this
+effect.
+</p>
+
+<pre><code class="language-css">
+
+
+button::before { content: ' '; background: url(../i/star.svg); height: 32px; width: 32px; position: absolute; bottom: -2rem; left: -1rem; opacity: 0; }
+button::after {  content: ' '; background: url(../i/star.svg); height: 32px; width: 32px; position: absolute; bottom: -2rem; right: -2rem; opacity: 0; }
+/* for the above to work the button must be positioned relatively */
+button { position: relative; }
+
+button.correct::before { animation: sparkle .5s ease-out forwards; }
+button.correct::after { animation: sparkle2 .75s ease-out forwards; }
+
+@keyframes sparkle {
+  from { opacity: 0; bottom: -2rem; scale: 0.5 }
+  to { opacity: 0.5; bottom: 1rem; scale: 0.8; left: -2rem; transform: rotate(90deg); }
+}
+
+@keyframes sparkle2 {
+  from { opacity: 0; bottom: -2rem; scale: 0.2}
+  to { opacity: 0.7; bottom: -1rem; scale: 1; right: -3rem; transform: rotate(-45deg); }
+}
+</code></pre>
+
+<p>
+We use the ::before and ::after <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::before">pseudo elements</a>
+to attach background image (<a href="./i/star.svg">star.svg</a>) but keep it hidden via
+setting opacity to 0. <br />
+It is then activated by invoking the sparkle animation
+when the button has the class name correct. <br />
+Remember, we already apply this class to the button
+when the correct answer is selected.
+</p>
+
+<p><a href="step6.html">Code from this step</a></p>
+
+
+</section>
+
+
+<section>
+<h2>Wrap Up And Some Extra Ideas</h2>
+<p>
+In less than 200 lines of (liberally commented) javascript we have a fully
+working, mobile friendly game. And not a single dependency or library in sight!
+</p>
+
+<p>
+Of course, there are endless features and improvements we could add to our game.
+If you fancy a challenge here are a few ideas:
+<ul>
+  <li>Add basic sound effects for correct and incorrect answers.</li>
+  <li>Make the game available offline using webworkers</li>
+  <li>Store stats such as number of plays, overall ratings in localstorage and display</li>
+  <li>Add a way to share your score and challenge friends on social media. </li>
+</ul>
+</p>
+</section>
+
+</main>
+
+<footer>
+      <p><a href="https://eoinmcgrath.com">by Eoin McGrath</a></p>
+</footer>
+
+<script>
+  window.setTimeout(() => {
+    document.querySelectorAll('pre').forEach((pre) => {
+      const code = pre.querySelector('code');
+      if (!code) { return; }
+      pre.classList.add('show');
+      Prism.highlightElement(code);
+    });
+  }, 1000);
+    </script>
+
+</body>
+</html>

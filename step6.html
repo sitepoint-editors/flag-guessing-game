@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Step 6 - Add intro screen and final touches</title>
+
+    <link rel="stylesheet" type="text/css" href="css/step6.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
+
+  </head>
+  <body>
+
+    <main>
+      <div class="score hide">0</div>
+
+      <section class="intro fade-in">
+       <h1>
+          Guess the flag
+      </h1>
+       <p class="guess">🌍</p>
+      <p>How many can you recognize?</p>
+      <button class="replay">Start</button>
+      </section>
+
+      <section class="play hide">
+        <h2 class="flag">🏳️</h2>
+        <div class="suggestions">
+          <button>One</button>
+          <button>Two</button>
+          <button>Three</button>
+          <button>Four</button>
+          <button>Five</button>
+        </div>
+      </section>
+
+      <section class="gameover hide">
+       <h2>Game Over</h2>
+        <p>You scored:
+          <span class="result">
+          </span>
+        </p>
+        <button class="replay">Play again</button>
+      </section>
+    </main>
+
+  <script type="module" src="js/step6.js"></script>
+  </body>
+</html>

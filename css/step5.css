@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 1.25rem "Fira Sans", sans-serif;
+  color: #333;
+  display: grid;
+  justify-content: center;
+}
+
+main {
+  display: grid;
+  place-items: center;
+  max-width: 500px;
+  min-width: 90vw;
+  height: 80vh;
+  background: #fff;
+  padding: 2rem;
+}
+
+section { text-align: center; width: 100%; }
+h2.flag { font-size: 10rem; margin: 0; color: #666; }
+
+button {
+  display: block;
+  background: #efefef;
+  border: 2px solid rgba(0,0,0,0.25);
+  border-radius: 5px;
+  padding: .5rem 1rem;
+  width: 50%;
+  max-width: 350px;
+  margin: .5rem auto;
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 100ms ease-in; color: 100ms ease-in;
+}
+button:hover { cursor: pointer; background: lightblue; }
+button.correct { background: darkgreen; color: #fff; }
+button.wrong { background: darkred; color: #fff; }
+
+.score { position: absolute; top: 1rem; left: 50%; font-size: 2rem; }
+.hide { display: none; }
+
+.slide-off { animation: 0.75s slide-off ease-out forwards; animation-delay: 1s;}
+.slide-on { animation: 0.75s slide-on ease-in; }
+
+@keyframes slide-off {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(50vw); }
+}
+@keyframes slide-on {
+  from { opacity: 0; transform: translateX(-50vw); }
+  to { opacity: 1; transform: translateX(0); }
+}

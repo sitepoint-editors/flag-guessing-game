@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 1.25rem "Fira Sans", sans-serif;
+  color: #333;
+  display: grid;
+  justify-content: center;
+}
+
+main {
+  display: grid;
+  place-items: center;
+  max-width: 500px;
+  min-width: 90vw;
+  height: 80vh;
+  background: #fff;
+  padding: 2rem;
+}
+
+section { text-align: center; width: 100%; }
+h2.flag { font-size: 10rem; margin: 0; color: #666; }
+
+button {
+  display: block;
+  background: #efefef;
+  border: 2px solid rgba(0,0,0,0.25);
+  border-radius: 5px;
+  padding: .5rem 1rem;
+  width: 50%;
+  max-width: 350px;
+  margin: .5rem auto;
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 100ms ease-in; color: 100ms ease-in;
+}
+button:hover { cursor: pointer; background: green; color: #fff; }
+button.correct { background: darkgreen; color: #fff; }
+button.wrong { background: darkred; color: #fff; }
+

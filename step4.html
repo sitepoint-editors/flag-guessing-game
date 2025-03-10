@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Step 4 - Add scoring and game over screen</title>
+
+    <link rel="stylesheet" type="text/css" href="css/step4.css">
+
+  </head>
+  <body>
+
+    <main>
+      <div class="score">0</div>
+
+      <section class="play">
+        <h2 class="flag">🏳️</h2>
+        <div class="suggestions">
+          <button>One</button>
+          <button>Two</button>
+          <button>Three</button>
+          <button>Four</button>
+          <button>Five</button>
+        </div>
+      </section>
+
+      <section class="gameover hide">
+       <h2>Game Over</h2>
+        <p>You scored:
+          <span class="result">
+          </span>
+        </p>
+        <button class="replay">Play again</button>
+      </section>
+
+    </main>
+
+  <script type="module" src="js/step4.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Step 2 - Load countries and some basic logic</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font: 1.25rem "Fira Sans", sans-serif;
+        color: #333;
+        display: grid;
+        justify-content: center;
+      }
+
+      main {
+        display: grid;
+        place-items: center;
+        max-width: 500px;
+        min-width: 90vw;
+        height: 80vh;
+        background: #fff;
+        padding: 2rem;
+      }
+
+      section { text-align: center; width: 100%; }
+      h2 { font-size: 10rem; margin: 0; color: #666; }
+
+      button {
+        display: block;
+        background: #efefef;
+        border: 2px solid rgba(0,0,0,0.25);
+        border-radius: 5px;
+        padding: .5rem 1rem;
+        width: 50%;
+        max-width: 350px;
+        margin: .5rem auto;
+        font-size: 1rem;
+        color: #333;
+        font-weight: bold;
+        transition: background-color 100ms ease-in; color: 100ms ease-in;
+      }
+      button:hover { cursor: pointer; background: green; color: #fff; }
+      button.correct { background: darkgreen; color: #fff; }
+      button.wrong { background: darkred; color: #fff; }
+    </style>
+
+  </head>
+  <body>
+
+    <main>
+      <section>
+        <h2 class="flag">🏳️</h2>
+        <div class="suggestions">
+          <button>One</button>
+          <button>Two</button>
+          <button>Three</button>
+          <button>Four</button>
+          <button>Five</button>
+        </div>
+
+      </section>
+    </main>
+
+  <script>
+    async function loadCountries(file) {
+      try {
+        const response = await fetch(file);
+        return await response.json();
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+
+    // data.json contains an array of objects that looks like this:
+    // { flag: <Flag emoji>, name: <Country name>}
+    loadCountries('./js/data.json')
+    .then((data) => {
+        const countries = data.countries;
+        startGame(countries)
+    });
+
+    // Fisher-Yates shuffle
+    // https://bost.ocks.org/mike/shuffle/
+    function shuffle(array) {
+      var m = array.length, t, i;
+
+      // While there remain elements to shuffle…
+      while (m) {
+
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+      }
+
+      return array;
+
+    }
+
+    function startGame(countries) {
+      // we want a randomized list of countries
+      // first, get all the keys from our json object
+      // now shuffle
+      shuffle(countries);
+
+      // pick anwser
+      let answer = countries.shift();
+
+      // pick 4 more countries, merge our answer and shuffle
+      let selected = shuffle([answer, ...countries.slice(0, 4)]);
+
+      // update the DOM, starting with the flag
+      document.querySelector('h2.flag').innerText = answer.flag;
+      // update each button with a country name
+      document.querySelectorAll('.suggestions button').forEach((button, index) => {
+        const countryName = selected[index].name;
+        button.innerText = countryName;
+        // this will allow us to check if the clicked button
+        // corresponds to the answer
+        button.dataset.correct = (countryName === answer.name);
+        button.onclick = checkAnswer;
+      })
+    }
+
+    function checkAnswer(e) {
+      const button = e.target;
+      if (button.dataset.correct === 'true') {
+        button.classList.add('correct');
+        alert('Correct! Well done!');
+      } else {
+        button.classList.add('wrong');
+        alert('Wrong answer try again');
+      }
+    }
+
+  </script>
+
+  </body>
+</html>
